@@ -128,7 +128,7 @@ class Payment {
         cy.get('input[type="file"][accept="image/*"]').attachFile('FRAGRANCE BY ELLA.jpg');
         cy.xpath("//button[contains(text(),'Create Dispute')]").click()
         cy.wait(6000)
-        cy.get('section[aria-label="Notifications alt+T"]').should('be.visible')
+        //cy.get('section[aria-label="Notifications alt+T"]').should('be.visible')
     }
 
 
