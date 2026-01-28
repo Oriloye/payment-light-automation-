@@ -30,13 +30,11 @@ Cypress.Commands.add('loginOnce', () => {
       const login = new Login();
       cy.visit('/login');
       login.loginTestcase();
-      // Wait for redirect after successful login
       cy.url().should('not.include', '/login');
-      cy.url().should('include', '/dashboard'); // Verify we're on dashboard
+      cy.url().should('include', '/dashboard'); 
     },
     {
       validate() {
-        // Validate session by checking if we stay authenticated
         cy.visit('/dashboard/payments');
         cy.url().should('not.include', '/login');
       },

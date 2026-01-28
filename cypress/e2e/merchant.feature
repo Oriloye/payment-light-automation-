@@ -1,7 +1,5 @@
 Feature: MERCHANTS
 
-
-
  Scenario: Customer
      When user creates a customer 
 

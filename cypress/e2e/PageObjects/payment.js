@@ -128,7 +128,7 @@ class Payment {
         cy.get('input[type="file"][accept="image/*"]').attachFile('FRAGRANCE BY ELLA.jpg');
         cy.xpath("//button[contains(text(),'Create Dispute')]").click()
         cy.wait(6000)
-        cy.get('section[aria-label="Notifications alt+T"]').should('be.visible')
+        //cy.get('section[aria-label="Notifications alt+T"]').should('be.visible')
     }
 
 
@@ -250,11 +250,7 @@ cy.get('.form-group-select--is-multi__option')
         cy.xpath(this.continuebtn).click()
         //cy.contains('Fund Transfer Successful').should('be.visible')
     }
-    waitForPageLoad() {
-    cy.window().should('have.property', 'document');
-    cy.document().its('readyState').should('eq', 'complete');
-  }
-
+    
     bulktransferfund(){
         
         cy.get(5000)

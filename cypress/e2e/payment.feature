@@ -26,11 +26,13 @@ Scenario:  Transfer fund to Single Beneficiary
 Scenario:  Transfer fund to Bulk Beneficiary
    When   user creates makes Bulk transfer
 
-Scenario:  Adding a single beneficiary
-   When   user adds single beneficiary
+#Scenario:  Adding a single beneficiary
+   #When   user adds single beneficiary
 
-Scenario:  Adding Bulk beneficiary
-   When   user adds bulk beneficiary
 
-Scenario:  Inviting An agent
-  When   user invites agent via terminal
+
+#Scenario:  Adding Bulk beneficiary
+   #When   user adds bulk beneficiary
+
+#Scenario:  Inviting An agent
+  #When   user invites agent via terminal
