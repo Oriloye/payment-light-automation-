@@ -1,4 +1,4 @@
-import login from '../PageObjects/login';
+
 import  Smetools from '../PageObjects/smetools';
 import {BeforeAll, Before, When} from '@badeball/cypress-cucumber-preprocessor';
 
@@ -10,7 +10,7 @@ BeforeAll(() => {
 Before(() => {
     cy.loginOnce()
     cy.intercept('GET', '**').as('pageLoad');
-    cy.visit('/balance/collection-wallet'); 
+    cy.visit('/dashboard'); 
     cy.wait('@pageLoad', { timeout: 10000 }).then(() => {
       cy.get('body', { timeout: 10000 }).should('be.visible');
   });
