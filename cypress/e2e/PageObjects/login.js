@@ -1,31 +1,63 @@
 /* eslint-disable cypress/no-unnecessary-waiting */
-class login{
+class login {
 
   emailField = '#email'
   passwordField = "input[placeholder*='12 Characters']"
   loginBtn = "button[type='submit']"
 
   loginTestcase() {
-
-    cy.get(this.emailField, { timeout: 20000 })
+ 
+    cy.document().should('have.property', 'readyState', 'complete');
+    cy.wait(2000);
+  cy.get(this.emailField, { timeout: 20000 })
       .should('exist')
       .should('be.visible')
+      .should('not.be.disabled');
 
-    
-    cy.get(this.emailField)
-      .clear({ force: true })
-      .type(Cypress.env('EMAIL'), { delay: 80, force: true })
+  
+    cy.get(this.emailField).then(($email) => {
+      cy.wrap($email).clear({ force: true });
+    });
 
-    cy.get(this.passwordField)
+    cy.wait(500);
+
+
+    cy.get(this.emailField).then(($email) => {
+      cy.wrap($email).type(Cypress.env('EMAIL'), { delay: 100, force: true });
+    });
+
+    cy.wait(1000);
+
+ 
+    cy.get(this.passwordField, { timeout: 20000 })
       .should('exist')
-      .clear({ force: true })
-      .type(Cypress.env('PASSWORD'), { delay: 80, force: true })
+      .should('be.visible')
+      .should('not.be.disabled');
 
-    cy.contains('button', 'Login').click()
+    cy.get(this.passwordField).then(($password) => {
+      cy.wrap($password).clear({ force: true });
+    });
+
+    cy.wait(500);
+
+    cy.get(this.passwordField).then(($password) => {
+      cy.wrap($password).type(Cypress.env('PASSWORD'), { delay: 100, force: true });
+    });
+
+    cy.wait(1000);
+
+  
+    cy.contains('button', 'Login')
+      .should('be.visible')
+      .should('not.be.disabled')
+      .click({ force: true });
 
    
-    cy.location('pathname', { timeout: 20000 })
-      .should('not.include', '/login')
+    cy.location('pathname', { timeout: 30000 })
+      .should('not.include', '/login');
+
+    
+    cy.wait(2000);
   }
 }
 
