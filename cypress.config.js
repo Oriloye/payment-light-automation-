@@ -26,12 +26,18 @@ module.exports = defineConfig({
     defaultCommandTimeout: 10000, 
     pageLoadTimeout: 60000,        
     requestTimeout: 10000,         
-    responseTimeout: 30000,   
+    responseTimeout: 30000,  
+    
+    env: {
+    EMAIL: 'abass@blusalt.net',
+    PASSWORD: '@Blusalt2030'
+  },
     
         baseUrl: 'https://dev-merchant.blusalt.net/',
         specPattern: '**/*.feature',
         setupNodeEvents,
     },
+    
      retries: {
       runMode: 2,      
       openMode: 0      

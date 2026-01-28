@@ -1,36 +1,33 @@
 /* eslint-disable cypress/no-unnecessary-waiting */
 class login{
 
-    emailField = "#email"
-    passwordField = "//input[contains(@placeholder,'12 Characters (Digits, Symbol, Letters)')]"
-    loginBtn = "button[type='submit']"
-    otpField = "input[class='disabled:cursor-not-allowed']"
-    email = "abass@blusalt.net"
-    password = "@Blusalt2030"
-    otp = "123456"
+  emailField = '#email'
+  passwordField = "input[placeholder*='12 Characters']"
+  loginBtn = "button[type='submit']"
 
+  loginTestcase() {
 
+    cy.get(this.emailField, { timeout: 20000 })
+      .should('exist')
+      .should('be.visible')
 
-loginTestcase(){
-cy.visit('https://dev-merchant.blusalt.net/login')
+    
+    cy.get(this.emailField)
+      .clear({ force: true })
+      .type(Cypress.env('EMAIL'), { delay: 80, force: true })
 
-    cy.get(this.emailField, { timeout: 10000 }).should('be.visible')
-      .type(this.email)
-
-    cy.xpath(this.passwordField).type(this.password)
+    cy.get(this.passwordField)
+      .should('exist')
+      .clear({ force: true })
+      .type(Cypress.env('PASSWORD'), { delay: 80, force: true })
 
     cy.contains('button', 'Login').click()
 
-    // confirm login success
-    cy.url().should('not.include', '/login')
-
-// cy.get(this.otpField).type(this.otp)
-// cy.get(this.submit).click()
-
-
-
-}}
-
+   
+    cy.location('pathname', { timeout: 20000 })
+      .should('not.include', '/login')
+  }
+}
 
 
 export default login
