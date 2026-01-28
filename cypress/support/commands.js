@@ -20,23 +20,26 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import 'cypress-file-upload';
-import Login from '../e2e/PageObjects/login'
- 
+import Login from '../e2e/PageObjects/login';
 
 Cypress.Commands.add('loginOnce', () => {
   cy.session(
     'merchant-session',
     () => {
-      const login = new Login();
       cy.visit('/login');
+
+      cy.get('#email', { timeout: 20000 }).should('be.visible');
+
+      const login = new Login();
       login.loginTestcase();
-      cy.url().should('not.include', '/login');
-      cy.url().should('include', '/dashboard'); 
+
+      cy.location('pathname', { timeout: 20000 })
+        .should('include', '/dashboard');
     },
     {
       validate() {
-        cy.visit('/dashboard/payments');
-        cy.url().should('not.include', '/login');
+        cy.visit('/dashboard');
+        cy.location('pathname').should('not.include', '/login');
       },
     }
   );

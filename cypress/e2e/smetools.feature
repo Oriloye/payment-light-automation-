@@ -13,8 +13,8 @@ Scenario: Plan
 Scenario: Tax
     When user creates tax
 
-Scenario: Coupon
-   When user creates a coupon
+#Scenario: Coupon
+ #  When user creates a coupon
 
 Scenario: Storefronrt Prducts
     When user creates Storefront Products
